@@ -1,0 +1,139 @@
+---Scenario---
+The user may log into the game with a chosen session name or be provided with one if they can't think of one.
+This name will joined with a unique ID value for each player.
+An Array list of user names and their IDs will be stored on the server.
+It doesn't matter if there are duplicate names as the IDs are unique.
+There will be a list of sample user names from which a random name will be selected for a user without a name.
+These names will be tank generals?
+The user will then see the main menu.
+The options available will be single player: vs ai and target practice
+                              multi player: host and join
+                              settings: shows all of the editable settings for the game
+At any time the user will be able to go back to the main menu but game settings will be lost.
+
+########################################################################################################
+---Single player vs Ai---
+The user will play on their local machine against a single ai tank.
+The ai will search for the player through trial and error in much the same way as the user will search for the ai's location.
+The game will end once either the player or the ai is defeated.
+
+---Single player target practice---
+The user will play a game where there are no enemies.
+There will be a single target for the user to hit.
+The target will change places once it has been hit and the user will gain score.
+
+---Multi player host---
+The user will enter a new lobby which will show the lobby ID in the top left corner.
+The user will be able to manipulate the game settings on the right hand side of the page.
+The user can force to start the game regardless of other players being ready.
+(possibly start a timer when a new player joins so that they have time to prepare. Can't force start until all timers have run out)
+The user will be able to select when they are ready to play or not.
+The user will be able to see which other players are ready or not.
+The user will be able to kick other players.
+
+---Multi player join---
+The user will enter in a lobby ID as the password to an active lobby.
+Once inside the lobby, the user will see their name appear on a list of players in the lobby.
+The user will be able to select when they are ready to play or not.
+The user will be able to see which other players are ready or not.
+
+---Multi player game play---
+depending on the settings of the game, there will be a maximum of two teams or a free for all.
+The users' team will be shown as blue tanks, the users' tank will be green while all enemies are red.
+The user will be able to adjust their angle and power to hit their enemies.
+The user will be able to move their tank as long as they have enough fuel.
+The user will be given 30 seconds (depending on settings) to setup their shot.
+The user can choose from a selection of weapons for a shot.
+The weapons available to the user will have quantities which decrease with usage.
+The user can choose to shoot their shot before the timer.
+Once all shots for all players on the same team have been made ready, then all of the shots will fire concurrently.
+
+---Settings---
+The user will be able to select the key bindings for the game from a predefined list.
+The user will be able to choose the colour scheme.
+The user may select the background of their choice.
+...
+
+########################################################################################################
+
+---Weapons---(These use P2 physics)
+Name            | Damage    |Likelihood%| Description
+---------------------------------------------------------------------------------------------------------------
+Shot            |10         |90         |A regular shot, weak but available
+Nuke            |100        |25         |The nuke is the most powerful weapon in the game. Based on a M.O.A.B
+Flower          |20         |75         |The flower is a gentle shot shaped like a flower
+Bullet          |12         |80         |The bullets have less gravity as they should be fired more directly?
+
+(with the weapons maybe have separate likelihoods for each weapon spawning amounts.
+I don't want a player to find they only have one weapon type to shoot because it is picked all the time
+The likelihood should change that and make it random but controlled.)
+
+########################################################################################################
+
+---Controls---
+Controls:  | QWEASD  | ARROWS    | MANUAL
+----------------------------------------------
+Angle Left | Q       | LEFT      | MSE+LC+DRAG
+Angle Right| E       | RIGHT     | MSE+LC+DRAG
+Power Up   | W       | UP        | MSE+LC
+Power Down | S       | DOWN      | MSE+LC
+Move Left  | A       | SHFT+LEFT | MSE+LC
+Move Right | D       | SHFT+RIGHT| MSE+LC
+Fire       | SPACEBAR| SPACEBAR  | MSE+LC
+
+########################################################################################################
+
+---Game Structure---
+index.html
+    This is where all of the javascript files are loaded to the web page.
+
+States
+    Boot.js
+        Starts the physics engine for the whole game.
+        Gets the game ready to be played.
+        Loads a loading bar which will be used while downloading the assets and game files.
+
+    Preload.js
+        Loads all of the games assets.
+        Assets are divided into images, fonts, data and audio.
+        Images are divided into sprites and buttons.
+        The directory shortcuts are used to reduce redundant code.
+
+    Login.js
+
+    Menu.js
+
+    Lobby.js
+
+    Game.js
+        Initialises the game variables and physics.
+        Creates the background, groups, timers and input.
+        A GUI is created for the game screen.
+        The update function handles how the button listeners and the collision detections are handled.
+
+Entities
+    Tank.js
+
+    Turret.js
+
+    Projectile.js
+
+    AI.js
+
+########################################################################################################
+
+---Concepts?---
+Posting the players' score on the server
+    - High scores section on the menu - shows name, score, date, game mode
+Add a trail to each projectile as it moves through the air.
+    - The trail would disappear each time a new shot is fired as a new trail would take its place.
+
+
+
+
+######TO-DO#############################################################################################
+Add the turn timer and update it constantly
+Update all of the labels more efficiently
+Add an ai class which is basically a tank but takes different data and has different targeting algorithms
+Need an input controller
+    Something that will swap between the change of controls for each user
