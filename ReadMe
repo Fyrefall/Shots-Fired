@@ -64,6 +64,7 @@ Nuke            |100        |25         |The nuke is the most powerful weapon in
 Flower          |20         |75         |The flower is a gentle shot shaped like a flower
 Bullet          |12         |80         |The bullets have less gravity as they should be fired more directly?
 
+
 (with the weapons maybe have separate likelihoods for each weapon spawning amounts.
 I don't want a player to find they only have one weapon type to shoot because it is picked all the time
 The likelihood should change that and make it random but controlled.)
